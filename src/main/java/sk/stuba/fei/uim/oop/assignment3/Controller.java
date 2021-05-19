@@ -50,4 +50,9 @@ public class Controller {
     public ProductAmountResponse productAmount(@PathVariable("id") Long id){
         return new ProductAmountResponse(this.service.findProductAmount(id));
     }
+
+    @PostMapping("/product/{id}/amount")
+    public ProductAmountResponse increaseProductAmount(@PathVariable("id") Long id,@RequestBody ProductRequest addAmount){
+        return new ProductAmountResponse(this.service.increaseAmount(addAmount, id).getAmount());
+    }
 }

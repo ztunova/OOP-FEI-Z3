@@ -94,5 +94,14 @@ public class ProductService implements IProductService{
         else{throw new NotFoundException();}
     }
 
+    @Override
+    public Product increaseAmount(ProductRequest addAmount, Long id) {
+        var opt= findById(id);
+        Product result= opt.get();
+        int increasedAmount= result.getAmount() + addAmount.getAmount();
+        result.setAmount(increasedAmount);
+        return this.repository.save(result);
+    }
+
 
 }
