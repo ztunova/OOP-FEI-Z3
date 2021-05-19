@@ -11,4 +11,5 @@ public interface IProductService {
     Optional<Product> findById(Long findingId);
     Product updateProduct(ProductRequest updateRequest, Long id);
     ResponseEntity deleteById(Long id);
+    Integer findProductAmount(Long id);
 }

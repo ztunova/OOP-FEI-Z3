@@ -84,5 +84,15 @@ public class ProductService implements IProductService{
         else{throw new NotFoundException();}
     }
 
+    @Override
+    public Integer findProductAmount(Long id) {
+        Optional<Product> finded= findById(id);
+        if(finded.isPresent()) {
+            Product findedProduct = finded.get();
+            return findedProduct.getAmount();
+        }
+        else{throw new NotFoundException();}
+    }
+
 
 }
