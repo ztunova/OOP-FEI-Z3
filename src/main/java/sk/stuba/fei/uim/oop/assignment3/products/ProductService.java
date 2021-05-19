@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService implements IProductService{
@@ -13,14 +14,14 @@ public class ProductService implements IProductService{
     public ProductService(ProductRepository repo){
         this.repository= repo;
 
-        /*Product p1= new Product();
+        Product p1= new Product();
         p1.setName("chleba");
         p1.setDescription("jedlo");
         p1.setAmount(2);
         p1.setUnit("ks");
         p1.setPrice(1.5);
         this.repository.save(p1);
-        Product p2= new Product();
+        /*Product p2= new Product();
         p2.setName("muka");
         p2.setDescription("trvanlive");
         p2.setAmount(1);
@@ -45,5 +46,9 @@ public class ProductService implements IProductService{
         return repository.save(created);
     }
 
+    @Override
+    public Optional<Product> findById(Long findingId) {
+        return this.repository.findById(findingId);
+    }
 
 }
