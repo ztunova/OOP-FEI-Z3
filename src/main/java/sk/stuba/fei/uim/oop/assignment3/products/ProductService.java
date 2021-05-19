@@ -1,6 +1,8 @@
 package sk.stuba.fei.uim.oop.assignment3.products;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.NotFoundException;
 
@@ -69,6 +71,17 @@ public class ProductService implements IProductService{
         }
 
         return repository.save(findedProduct);
+    }
+
+    @Override
+    public ResponseEntity deleteById(Long id) {
+        Optional<Product> finded= findById(id);
+        if(finded.isPresent()) {
+            Product findedProduct = finded.get();
+            this.repository.delete(findedProduct);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        else{throw new NotFoundException();}
     }
 
 

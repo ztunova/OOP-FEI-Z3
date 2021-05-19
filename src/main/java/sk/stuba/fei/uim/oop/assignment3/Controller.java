@@ -2,6 +2,7 @@ package sk.stuba.fei.uim.oop.assignment3;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.stuba.fei.uim.oop.assignment3.products.IProductService;
 import sk.stuba.fei.uim.oop.assignment3.products.Product;
@@ -9,7 +10,6 @@ import sk.stuba.fei.uim.oop.assignment3.products.ProductRequest;
 import sk.stuba.fei.uim.oop.assignment3.products.ProductResponse;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -42,5 +42,10 @@ public class Controller {
     @PutMapping("/product/{id}")
     public ProductResponse updateProduct(@PathVariable("id") Long id, @RequestBody ProductRequest updateRequest){
         return new ProductResponse(service.updateProduct(updateRequest, id));
+    }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity deleteProduct(@PathVariable("id") Long id){
+        return this.service.deleteById(id);
     }
 }
