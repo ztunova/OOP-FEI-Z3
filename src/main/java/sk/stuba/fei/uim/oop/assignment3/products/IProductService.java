@@ -7,4 +7,5 @@ public interface IProductService {
     List<Product> getAll();
     Product create(ProductRequest request);
     Optional<Product> findById(Long findingId);
+    Product updateProduct(ProductRequest updateRequest, Long id);
 }

@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop.assignment3;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import sk.stuba.fei.uim.oop.assignment3.products.IProductService;
 import sk.stuba.fei.uim.oop.assignment3.products.Product;
@@ -22,16 +23,24 @@ public class Controller {
     }
 
     @PostMapping("/product")
+    @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse createProduct(@RequestBody ProductRequest request){
         return new ProductResponse(this.service.create(request));
     }
 
     @GetMapping("/product/{id}")
-    public Optional<Product> findProductById(@PathVariable("id") Long id){
-        var result= this.service.findById(id);
-        if(result.isPresent()) {
+    public ProductResponse findProductById(@PathVariable("id") Long id){
+        var findedOpt= this.service.findById(id);
+        Product findedProduct= findedOpt.get();
+        return new ProductResponse(findedProduct);
+        /*if(result.isPresent()) {
             return result;
         }
-        else{throw new NotFoundException();}
+        else{throw new NotFoundException();}*/
+    }
+
+    @PutMapping("/product/{id}")
+    public ProductResponse updateProduct(@PathVariable("id") Long id, @RequestBody ProductRequest updateRequest){
+        return new ProductResponse(service.updateProduct(updateRequest, id));
     }
 }
