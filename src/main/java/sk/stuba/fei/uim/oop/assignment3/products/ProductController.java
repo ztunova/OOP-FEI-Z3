@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.stuba.fei.uim.oop.assignment3.products.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,10 +29,6 @@ public class ProductController {
         var findedOpt= this.service.findById(id);
         Product findedProduct= findedOpt.get();
         return new ProductResponse(findedProduct);
-        /*if(result.isPresent()) {
-            return result;
-        }
-        else{throw new NotFoundException();}*/
     }
 
     @PutMapping("/product/{id}")

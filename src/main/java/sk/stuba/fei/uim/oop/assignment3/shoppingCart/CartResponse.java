@@ -12,13 +12,11 @@ import java.util.List;
 @NoArgsConstructor
 public class CartResponse {
     private Long id;
-    //private List<ShoppingListItem> shoppingList;
     private List<ShoppingListResponse> shoppingList;
     private boolean payed;
 
     public CartResponse(Cart cart){
         this.id= cart.getCartId();
-        //this.shoppingList= cart.getShoppingList();
         this.shoppingList = new ArrayList<>();
         for (ShoppingListItem si : cart.getShoppingList()){
             ShoppingListResponse slr = new ShoppingListResponse();

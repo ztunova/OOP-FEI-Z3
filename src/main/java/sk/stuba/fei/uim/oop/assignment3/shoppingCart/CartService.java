@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.myExceptions.BadRequestException;
 import sk.stuba.fei.uim.oop.assignment3.myExceptions.NotFoundException;
 import sk.stuba.fei.uim.oop.assignment3.products.Product;
-import sk.stuba.fei.uim.oop.assignment3.products.ProductRequest;
 import sk.stuba.fei.uim.oop.assignment3.products.ProductService;
 
 import java.util.List;

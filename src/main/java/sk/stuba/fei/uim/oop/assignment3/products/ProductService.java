@@ -16,21 +16,6 @@ public class ProductService implements IProductService{
     @Autowired
     public ProductService(ProductRepository repo){
         this.repository= repo;
-
-        Product p1= new Product();
-        p1.setName("chleba");
-        p1.setDescription("jedlo");
-        p1.setAmount(2);
-        p1.setUnit("ks");
-        p1.setPrice(1.5);
-        this.repository.save(p1);
-        /*Product p2= new Product();
-        p2.setName("muka");
-        p2.setDescription("trvanlive");
-        p2.setAmount(1);
-        p2.setUnit("kg");
-        p2.setPrice(1.8);
-        this.repository.save(p2);*/
     }
 
     @Override
@@ -52,7 +37,6 @@ public class ProductService implements IProductService{
     @Override
     public Optional<Product> findById(Long findingId) {
         var result= this.repository.findById(findingId);
-       // return this.repository.findById(findingId);
         if(result.isPresent()) {
             return result;
         }
@@ -110,6 +94,5 @@ public class ProductService implements IProductService{
         result.setAmount(decreasedAmount);
         this.repository.save(result);
     }
-
 
 }
