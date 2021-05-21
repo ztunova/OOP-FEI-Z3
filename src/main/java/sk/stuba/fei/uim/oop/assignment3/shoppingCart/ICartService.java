@@ -8,4 +8,5 @@ public interface ICartService {
     Cart findById(Long id);
     ResponseEntity deleteById(Long id);
     Cart addProductToShoppingList(ProductToCartRequest productRequest, Long cartId);
+    String sumOfCart(Long id);
 }

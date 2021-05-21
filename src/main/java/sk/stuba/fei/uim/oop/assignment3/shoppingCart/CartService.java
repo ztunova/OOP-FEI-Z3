@@ -90,6 +90,25 @@ public class CartService implements ICartService{
             this.productService.decreaseAmount(productRequest.getAmount(), productRequest.getProductId());
             return this.cartRepository.save(findedCart);
         }
-       // return findedCart;
     }
+
+    @Override
+    public String sumOfCart(Long id) {
+        Cart cart= findById(id);
+        if(cart.isPayed()){
+            throw new BadRequestException();
+        }
+        List<ShoppingListItem> shoppingList= cart.getShoppingList();
+        Product product;
+        double sum= 0.0;
+        for(ShoppingListItem item : shoppingList){
+            product= this.productService.findById(item.getProductId()).get();
+            sum= sum + (product.getPrice() * item.getAmount());
+        }
+        cart.setPayed(true);
+        this.cartRepository.save(cart);
+        return Double.toString(sum);
+    }
+
+
 }

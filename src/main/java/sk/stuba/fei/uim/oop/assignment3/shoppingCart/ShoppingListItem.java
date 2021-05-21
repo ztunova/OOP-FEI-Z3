@@ -12,7 +12,10 @@ import javax.persistence.Id;
 @Setter
 @Entity
 public class ShoppingListItem {
-    @Id
     private Long productId;
     private int amount;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long itemId;
 }
