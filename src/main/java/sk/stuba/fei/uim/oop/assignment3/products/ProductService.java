@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import sk.stuba.fei.uim.oop.assignment3.NotFoundException;
+import sk.stuba.fei.uim.oop.assignment3.myExceptions.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -101,6 +101,14 @@ public class ProductService implements IProductService{
         int increasedAmount= result.getAmount() + addAmount.getAmount();
         result.setAmount(increasedAmount);
         return this.repository.save(result);
+    }
+
+    public void decreaseAmount(int soldAmount, Long id){
+        var opt= findById(id);
+        Product result= opt.get();
+        int decreasedAmount= result.getAmount() - soldAmount;
+        result.setAmount(decreasedAmount);
+        this.repository.save(result);
     }
 
 

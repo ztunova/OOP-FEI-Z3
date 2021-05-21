@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sk.stuba.fei.uim.oop.assignment3.myExceptions.BadRequestException;
+import sk.stuba.fei.uim.oop.assignment3.products.ProductRequest;
 
 @RestController
 public class CartController {
@@ -24,5 +26,10 @@ public class CartController {
     @DeleteMapping("/cart/{id}")
     private ResponseEntity deleteCartById(@PathVariable("id") Long id){
         return this.cartService.deleteById(id);
+    }
+
+    @PostMapping("/cart/{id}/add")
+    private CartResponse addProductToCart(@PathVariable("id") Long id, @RequestBody ProductToCartRequest productRequest){
+        return new CartResponse(this.cartService.addProductToShoppingList(productRequest, id));
     }
 }
